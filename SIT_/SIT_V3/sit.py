@@ -47,9 +47,11 @@ while True:
     frps_maped_to_05 = float(map_val(frps_voltage_val(frps_analog_in), 0.0, 2.5, 0.0, 5.0))
 
     if frps_maped_to_05 < 2.0:
-        rpm_maped_to_05 = float(map_val(frps_maped_to_05, 0.0, 2.0, 0.5, 2.0))
-    if frps_maped_to_05 > 2.0:
-        rpm_maped_to_05 = float(map_val(frps_maped_to_05, 2.0, 5.0, 2.25, 5.0))
+        rpm_maped_to_05 = float(map_val(frps_maped_to_05, 0.0, 2.0, 0.0, 1.75))
+    elif frps_maped_to_05 > 2.0 or frps_maped_to_05 < 3.5:
+        rpm_maped_to_05 = float(map_val(frps_maped_to_05, 2.0, 3.5, 2.25, 4.0))
+    else:
+        rpm_maped_to_05 = frps_maped_to_05
 
     tps = round(float(map_val(frps_maped_to_05, 0.0, 5.0, tps_gauge[0], tps_gauge[-1])))
     rpm = round(float(map_val(rpm_maped_to_05, 0.0, 5.0, rpm_gauge[0], rpm_gauge[-1])))
